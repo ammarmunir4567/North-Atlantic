@@ -497,17 +497,17 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
                       </div>
                     ) : (
                       <div 
-                        className="w-full h-auto min-h-[100px] md:h-[164px] bg-[#1E2022] rounded-lg border-[1.5px] border-solid border-[#10EFFF] flex items-center justify-between px-4 md:px-6 py-4"
+                        className="w-full h-auto min-h-[100px] md:h-[164px] bg-[#1E2022] rounded-lg border-[1.5px] border-solid border-[#10EFFF] flex items-center justify-between px-3 md:px-6 py-4 gap-2 overflow-hidden"
                       >
-                        <div className="flex items-center gap-3 md:gap-4">
+                        <div className="flex items-center gap-2 md:gap-4 min-w-0 flex-1">
                           <div className="w-10 h-10 md:w-12 md:h-12 bg-[#10EFFF]/20 rounded-lg flex items-center justify-center flex-shrink-0">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="md:w-6 md:h-6">
                               <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#10EFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                               <path d="M14 2V8H20" stroke="#10EFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                           </div>
-                          <div className="min-w-0">
-                            <p className="text-white font-medium text-sm md:text-base truncate">{uploadedFile.name}</p>
+                          <div className="min-w-0 flex-1 overflow-hidden">
+                            <p className="text-white font-medium text-sm md:text-base truncate max-w-full">{uploadedFile.name}</p>
                             <p className="text-gray-400 text-xs md:text-sm">{(uploadedFile.size / 1024).toFixed(2)} KB</p>
                           </div>
                         </div>
@@ -571,17 +571,17 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
 
                     {/* Uploaded File Section */}
                     {uploadedFile && (
-                      <div className="w-full md:w-[734px] bg-[#080B10] border border-[#2B2F32] rounded-lg p-3 md:p-4">
+                      <div className="w-full md:w-[734px] bg-[#080B10] border border-[#2B2F32] rounded-lg p-3 md:p-4 overflow-hidden">
                         <h4 className="text-white font-medium mb-3 text-sm md:text-base">Attached Document</h4>
-                        <div className="flex items-center gap-3 bg-[#1E2022] rounded-lg p-3 border border-[#10EFFF]">
+                        <div className="flex items-center gap-2 md:gap-3 bg-[#1E2022] rounded-lg p-3 border border-[#10EFFF] overflow-hidden">
                           <div className="w-8 h-8 md:w-10 md:h-10 bg-[#10EFFF]/20 rounded-lg flex items-center justify-center flex-shrink-0">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="md:w-5 md:h-5">
                               <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#10EFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                               <path d="M14 2V8H20" stroke="#10EFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                           </div>
-                          <div className="min-w-0">
-                            <p className="text-white font-medium text-xs md:text-sm truncate">{uploadedFile.name}</p>
+                          <div className="min-w-0 flex-1 overflow-hidden">
+                            <p className="text-white font-medium text-xs md:text-sm truncate max-w-full">{uploadedFile.name}</p>
                             <p className="text-gray-400 text-xs">{(uploadedFile.size / 1024).toFixed(2)} KB</p>
                           </div>
                         </div>
