@@ -134,34 +134,6 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Service */}
-            <div>
-              <label
-                htmlFor="service"
-                className="block text-sm font-medium mb-2 text-white"
-              >
-                Service
-              </label>
-              <select
-                id="service"
-                name="service"
-                required
-                className="w-full px-4 py-3 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#10EFFF] appearance-none cursor-pointer"
-                defaultValue=""
-              >
-                <option
-                  value=""
-                  disabled
-                >
-                  Select the service
-                </option>
-                <option value="ai-development">AI Development</option>
-                <option value="automation">Automation</option>
-                <option value="integration">Integration</option>
-                <option value="consulting">Consulting</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
 
             {/* Message */}
             <div>

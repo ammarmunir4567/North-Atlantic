@@ -4,21 +4,17 @@ import { motion } from "framer-motion"
 import { Sparkles, ArrowRight } from "lucide-react"
 
 export default function AboutSection() {
-  const stats = [
-    {
-      value: "07+",
-      description: "Years of Innovation",
-    },
-    {
-      value: "40+",
-      description: "Happy customer",
-    },
-  ]
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact')
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 
   return (
     <section
       id="about"
-      className="py-20 px-4"
+      className="pt-20 pb-8 px-4"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid ">
@@ -46,21 +42,19 @@ export default function AboutSection() {
             <div className="mb-8 ">
               <p className="text-white text-md leading-relaxed">
                 <span className="font-bold">
-                  We're North Atlantic Softwares
+                At North Atlantic Software, we turn complex ideas into sharp, scalable reality.
                 </span>{" "}
-                — We’re North Atlantic Softwares — a team that designs and builds smart web and mobile apps for companies that want to move fast and build right.
+                From AI-driven backends to sleek mobile interfaces, we design and engineer products that just work.
+                We don't do buzzword soup. We don't do bloated workflows.
                 <span className="text-white">
                   {" "}
-                  Some of our work runs on AI and machine learning. Some turns messy data into useful insight. Some just looks slick and gets the job done. Whatever you’re building — we’re here to make it sharp, scalable, and real.
-                </span>
-                <span style={{ color: "rgba(164, 168, 174, 1)" }}>
-                  {" "}
-                  No bloated process. No buzzword soup. Just clear communication, strong engineering, and products that make a difference.
+                  We deliver clear communication, messy data turned into useful insights, and code that stands the test of time. If you're ready to build, we're ready to execute.
                 </span>
               </p>
             </div>
 
             <button
+              onClick={scrollToContact}
               style={{
                 borderRadius: "12px",
                 background:
@@ -74,32 +68,7 @@ export default function AboutSection() {
               <ArrowRight className="w-5 h-5" />
             </button>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-card border border-border rounded-2xl p-6 hover:border-gray-700 transition-all duration-300 h-[248px]"
-                >
-                  <div className="flex flex-col h-full">
-                    <div className="text-4xl font-bold text-white mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="flex items-end justify-between mt-auto">
-                      <p className="text-white text-sm">{stat.description}</p>
-                      <Sparkles
-                        size={20}
-                        className="text-white flex-shrink-0 ml-2"
-                      />
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          
           </motion.div>
 
           {/* Right Side - Placeholder for potential image/content */}

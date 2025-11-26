@@ -42,7 +42,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="py-20 px-4"
+      className="pt-8 pb-20 px-4"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}

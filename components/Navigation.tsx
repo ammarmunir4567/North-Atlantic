@@ -7,8 +7,16 @@ import { useState } from "react"
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+    setIsMenuOpen(false)
+  }
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#08090A]/90 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between lg:justify-center items-center h-20 relative">
           <Link
@@ -62,18 +70,24 @@ export default function Navigation() {
             >
               Home
             </Link>
-            <Link
-              href="#about"
+            <button
+              onClick={() => scrollToSection('about')}
               className="text-sm hover:text-gray-300 transition-colors"
             >
               About Us
-            </Link>
-            <Link
-              href="#choose"
+            </button>
+            <button
+              onClick={() => scrollToSection('services')}
+              className="text-sm hover:text-gray-300 transition-colors"
+            >
+              Services
+            </button>
+            <button
+              onClick={() => scrollToSection('choose')}
               className="text-sm hover:text-gray-300 transition-colors"
             >
               Choose Us
-            </Link>
+            </button>
           </div>
         </div>
 
@@ -87,20 +101,24 @@ export default function Navigation() {
               >
                 Home
               </Link>
-              <Link
-                href="#about"
-                className="text-sm hover:text-gray-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                onClick={() => scrollToSection('about')}
+                className="text-sm hover:text-gray-300 transition-colors text-left"
               >
                 About Us
-              </Link>
-              <Link
-                href="#choose"
-                className="text-sm hover:text-gray-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              </button>
+              <button
+                onClick={() => scrollToSection('services')}
+                className="text-sm hover:text-gray-300 transition-colors text-left"
+              >
+                Services
+              </button>
+              <button
+                onClick={() => scrollToSection('choose')}
+                className="text-sm hover:text-gray-300 transition-colors text-left"
               >
                 Choose Us
-              </Link>
+              </button>
             </div>
           </div>
         )}

@@ -26,15 +26,15 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
 
   const fileInputRef = React.useRef<HTMLInputElement>(null)
   const skillOptions = [
-    { id: "react", label: "Hire React.Js Developers", icon: "/react-icon.svg", shortLabel: "React.Js Developer" },
-    { id: "ux-ui", label: "Hire UX/UI Designers", icon: "/ui-icon.svg", shortLabel: "UX/UI Designer" },
-    { id: "node", label: "Hire Node.Js Developers", icon: "/node-icon.svg", shortLabel: "Node.Js Developer" },
-    { id: "python", label: "Hire Python Developers", icon: "/python-icon.svg", shortLabel: "Python Developer" },
-    { id: "fullstack", label: "Hire Full Stack Developers", icon: "/full-stack-icon.svg", shortLabel: "Full Stack Developer" },
-    { id: "cloud", label: "Hire Cloud Developers", icon: "/cloud-icon.svg", shortLabel: "Cloud Developer" },
-    { id: "mobile", label: "Hire Android / IOS Developers", icon: "/android-icon.svg", shortLabel: "Android / IOS Developer" },
-    { id: "javascript", label: "Hire Javascript Developers", icon: "/js-icon.svg", shortLabel: "Javascript Developer" },
-    { id: "devops", label: "Hire Dev-ops Developers", icon: "/dev-ops-icon.svg", shortLabel: "Dev-ops Developer" },
+    { id: "react", label: "Hire React.Js Developers", mobileLabel: "React.Js", icon: "/react-icon.svg", shortLabel: "React.Js Developer" },
+    { id: "ux-ui", label: "Hire UX/UI Designers", mobileLabel: "UX/UI", icon: "/ui-icon.svg", shortLabel: "UX/UI Designer" },
+    { id: "node", label: "Hire Node.Js Developers", mobileLabel: "Node.Js", icon: "/node-icon.svg", shortLabel: "Node.Js Developer" },
+    { id: "python", label: "Hire Python Developers", mobileLabel: "Python", icon: "/python-icon.svg", shortLabel: "Python Developer" },
+    { id: "fullstack", label: "Hire Full Stack Developers", mobileLabel: "Full Stack", icon: "/full-stack-icon.svg", shortLabel: "Full Stack Developer" },
+    { id: "cloud", label: "Hire Cloud Developers", mobileLabel: "Cloud", icon: "/cloud-icon.svg", shortLabel: "Cloud Developer" },
+    { id: "mobile", label: "Hire Android / IOS Developers", mobileLabel: "Android/IOS", icon: "/android-icon.svg", shortLabel: "Android / IOS Developer" },
+    { id: "javascript", label: "Hire Javascript Developers", mobileLabel: "Javascript", icon: "/js-icon.svg", shortLabel: "Javascript Developer" },
+    { id: "devops", label: "Hire Dev-ops Developers", mobileLabel: "Dev-ops", icon: "/dev-ops-icon.svg", shortLabel: "Dev-ops Developer" },
   ]
 
   const steps = [
@@ -185,23 +185,22 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
             className="fixed inset-0 bg-black/80 z-50 backdrop-blur-sm"
           />
 
-          {/* Modal */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: "-50%", x: "-50%" }}
-            animate={{ opacity: 1, scale: 1, y: "-50%", x: "-50%" }}
-            exit={{ opacity: 0, scale: 0.95, y: "-50%", x: "-50%" }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-1/2 left-1/2 z-50 bg-[#1A1D1F] text-white overflow-hidden max-w-[90vw] max-h-[90vh] rounded-[4px]"
-            style={{
-              width: "814px",
-              height: currentStep === 1 ? "856px" : currentStep === 2 ? "702px" : currentStep === 3 ? "796px" : "700px",
-              boxShadow:
-                "0px -8px 4px 0px rgba(16, 239, 255, 0.04), 0px 8px 12px 6px rgba(16, 239, 255, 0.16)",
-            }}
-          >
+          {/* Modal Container for centering on desktop */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="w-full max-h-[calc(100vh-32px)] md:w-[814px] md:max-h-[90vh] bg-[#1A1D1F] text-white overflow-hidden rounded-[8px] flex flex-col pointer-events-auto"
+              style={{
+                boxShadow:
+                  "0px -8px 4px 0px rgba(16, 239, 255, 0.04), 0px 8px 12px 6px rgba(16, 239, 255, 0.16)",
+              }}
+            >
             {/* Header */}
-            <div className="flex justify-between items-center p-8 pb-6">
-              <h2 className="text-2xl font-semibold">Hire Us</h2>
+            <div className="flex-shrink-0 flex justify-between items-center p-4 md:p-6">
+              <h2 className="text-xl md:text-2xl font-semibold">Hire Us</h2>
               <button
                 onClick={onClose}
                 className="text-gray-400 hover:text-white transition-colors"
@@ -211,14 +210,14 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
             </div>
 
             {/* Stepper */}
-            <div className="mb-8 w-full flex justify-center items-center">
-              <div className="flex items-center w-[766px] h-[62px]">
+            <div className="flex-shrink-0 mb-4 md:mb-6 w-full flex justify-center items-center px-2 md:px-0 overflow-x-auto">
+              <div className="flex items-center justify-between w-full max-w-[320px] md:max-w-none md:w-[766px]">
                 {steps.map((step, index) => (
                   <div key={step.id} className="flex items-start">
                     {/* Step Circle */}
-                    <div className="flex flex-col items-center flex-shrink-0 gap-3">
+                    <div className="flex flex-col items-center flex-shrink-0 gap-1 md:gap-3">
                       <div
-                        className={`flex items-center justify-center transition-colors w-9 h-9 p-2 rounded-[24px] ${
+                        className={`flex items-center justify-center transition-colors w-7 h-7 md:w-9 md:h-9 p-1.5 md:p-2 rounded-full ${
                           index === currentStep
                             ? "border-2 border-[#10EFFF] text-[#10EFFF] bg-transparent"
                             : index < currentStep
@@ -229,14 +228,14 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
                         <img
                           src={index < currentStep ? step.selectedIcon : step.icon}
                           alt={step.name}
-                          className="w-5 h-5"
+                          className="w-3.5 h-3.5 md:w-5 md:h-5"
                           style={{
                             filter: index === currentStep ? "brightness(0) saturate(100%) invert(79%) sepia(97%) saturate(2477%) hue-rotate(153deg) brightness(102%) contrast(101%)" : undefined
                           }}
                         />
                       </div>
                       <span
-                        className={`text-sm whitespace-nowrap ${
+                        className={`text-[10px] md:text-sm whitespace-nowrap ${
                           index === currentStep
                             ? "text-white"
                             : "text-gray-500"
@@ -249,7 +248,7 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
                     {/* Connector Line */}
                     {index < steps.length - 1 && (
                       <div
-                        className={`w-[150px] h-[3px] rounded-[20px] mx-2 mt-[16.5px] ${
+                        className={`w-[20px] md:w-[150px] h-[2px] md:h-[3px] rounded-[20px] mx-1 md:mx-2 mt-[12px] md:mt-[16.5px] ${
                           index < currentStep
                             ? "bg-[#10EFFF]"
                             : "bg-[#ABABAB]"
@@ -262,18 +261,18 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
             </div>
 
             {/* Content */}
-            <div className="w-full flex justify-center pb-8 overflow-y-auto" style={{ height: currentStep === 1 ? "calc(856px - 220px)" : currentStep === 2 ? "calc(702px - 220px)" : currentStep === 3 ? "calc(796px - 220px)" : "calc(700px - 220px)" }}>
+            <div className="w-full flex justify-center overflow-y-auto flex-1 px-4 md:px-6 pb-4">
               {currentStep === 0 && (
-                <div className="w-[766px] h-[421px] flex flex-col gap-4">
-                  <h3 className="text-xl font-semibold">Select Skills</h3>
-                  <div className="grid grid-cols-2 gap-3">
+                <div className="w-full md:w-[766px] flex flex-col gap-3 md:gap-4">
+                  <h3 className="text-base md:text-xl font-semibold">Select Skills</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-2 gap-2 md:gap-3">
                     {skillOptions.map((skill, idx) => (
                       <button
                         key={skill.id}
                         onClick={() => toggleSkill(skill.id)}
-                        className={`flex items-center justify-between rounded-xl transition-all px-4 py-3 bg-[#080B10] ${
-                          idx === skillOptions.length - 1 ? "col-span-2 w-full" : "w-[377px]"
-                        } h-[68px] ${
+                        className={`flex items-center justify-between rounded-lg md:rounded-xl transition-all px-2 md:px-4 py-2 md:py-3 bg-[#080B10] ${
+                          idx === skillOptions.length - 1 ? "col-span-2 w-full" : "w-full"
+                        } min-h-[48px] md:h-[68px] ${
                           selectedSkills.includes(skill.id)
                             ? "border border-[#10EFFF] hover:border-[#10EFFF]"
                             : "border border-[#2B2F32] hover:border-[#3B3F42]"
@@ -284,18 +283,21 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
                             : "0px -1px 0px 0px rgba(43, 47, 50, 0.6) inset",
                         }}
                       >
-                        <div className="flex items-center space-x-3">
-                          <div className="w-10 h-10 rounded-lg bg-[#2B2F32] flex items-center justify-center">
+                        <div className="flex items-center space-x-1.5 md:space-x-3 min-w-0">
+                          <div className="w-7 h-7 md:w-10 md:h-10 rounded-md md:rounded-lg bg-[#2B2F32] flex items-center justify-center flex-shrink-0">
                             <img
                               src={skill.icon}
                               alt={skill.label}
-                              className="w-5 h-5"
+                              className="w-3.5 h-3.5 md:w-5 md:h-5"
                             />
                           </div>
-                          <span className="text-white text-sm">{skill.label}</span>
+                          <span className="text-white text-[10px] md:text-sm text-left truncate">
+                            <span className="md:hidden">{skill.mobileLabel}</span>
+                            <span className="hidden md:inline">{skill.label}</span>
+                          </span>
                         </div>
                         <div
-                          className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
+                          className={`w-4 h-4 md:w-5 md:h-5 rounded border-2 flex items-center justify-center flex-shrink-0 ml-1 ${
                             selectedSkills.includes(skill.id)
                               ? "border-[#10EFFF] bg-[#10EFFF]"
                               : "border-gray-500"
@@ -303,7 +305,7 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
                         >
                           {selectedSkills.includes(skill.id) && (
                             <svg
-                              className="w-3 h-3 text-black"
+                              className="w-2.5 h-2.5 md:w-3 md:h-3 text-black"
                               fill="none"
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -322,28 +324,28 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
               )}
 
               {currentStep === 1 && (
-                <div className="w-[768px] flex flex-col gap-4">
-                  <h3 className="text-xl font-semibold">Add Professional Information</h3>
-                  <div className="w-[768px] h-[593px] flex flex-col gap-4 overflow-y-auto">
+                <div className="w-full md:w-[768px] flex flex-col gap-4">
+                  <h3 className="text-lg md:text-xl font-semibold">Add Professional Information</h3>
+                  <div className="w-full md:w-[768px] flex flex-col gap-4 overflow-y-auto">
                     {professionals.map((professional) => (
                       <div 
                         key={professional.id} 
-                        className="w-[768px] bg-[#080B10] border border-[#2B2F32] rounded-lg p-4 flex-shrink-0"
+                        className="w-full md:w-[768px] bg-[#080B10] border border-[#2B2F32] rounded-lg p-3 md:p-4 flex-shrink-0"
                         style={{ minHeight: "152px" }}
                       >
                         {/* Header */}
                         <div className="flex items-start justify-between mb-3">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-[#2B2F32] flex items-center justify-center">
-                              <img src={professional.icon} alt={professional.skillLabel} className="w-5 h-5" />
+                          <div className="flex items-center gap-2 md:gap-3">
+                            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-[#2B2F32] flex items-center justify-center flex-shrink-0">
+                              <img src={professional.icon} alt={professional.skillLabel} className="w-4 h-4 md:w-5 md:h-5" />
                             </div>
                             <div>
-                              <h4 className="text-white font-medium">{professional.skillLabel}</h4>
-                              <p className="text-gray-400 text-sm">Enter Number of Professional and Skill Level.</p>
+                              <h4 className="text-white font-medium text-sm md:text-base">{professional.skillLabel}</h4>
+                              <p className="text-gray-400 text-xs md:text-sm">Enter Number of Professional and Skill Level.</p>
                             </div>
                           </div>
                           {professionals.length > 1 && (
-                            <button onClick={() => removeProfessional(professional.id)} className="text-red-500 hover:text-red-400">
+                            <button onClick={() => removeProfessional(professional.id)} className="text-red-500 hover:text-red-400 flex-shrink-0">
                               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2.5 5H17.5M8.33333 8.33333V13.3333M11.6667 8.33333V13.3333M3.33333 5L4.16667 15.8333C4.16667 16.2754 4.34226 16.6993 4.65482 17.0118C4.96738 17.3244 5.39131 17.5 5.83333 17.5H14.1667C14.6087 17.5 15.0326 17.3244 15.3452 17.0118C15.6577 16.6993 15.8333 16.2754 15.8333 15.8333L16.6667 5M7.5 5V3.33333C7.5 3.11232 7.5878 2.90036 7.74408 2.74408C7.90036 2.5878 8.11232 2.5 8.33333 2.5H11.6667C11.8877 2.5 12.0996 2.5878 12.2559 2.74408C12.4122 2.90036 12.5 3.11232 12.5 3.33333V5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                               </svg>
@@ -354,9 +356,9 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
                         {/* Multiple Entries */}
                         {professional.entries.map((entry, entryIndex) => (
                           <div key={entry.id} className="mb-3">
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                               <div>
-                                <label className="text-white text-sm mb-2 block">No. of Professional:</label>
+                                <label className="text-white text-xs md:text-sm mb-2 block">No. of Professional:</label>
                                 <input 
                                   type="text" 
                                   value={entry.count}
@@ -373,13 +375,13 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
                                       return p
                                     }))
                                   }}
-                                  className="w-full bg-white text-black px-4 py-2 rounded-lg outline-none"
+                                  className="w-full bg-white text-black px-3 md:px-4 py-2 rounded-lg outline-none text-sm md:text-base"
                                   placeholder="01"
                                 />
                               </div>
                               <div>
                                 <div className="flex items-center justify-between mb-2">
-                                  <label className="text-white text-sm">Skill Level</label>
+                                  <label className="text-white text-xs md:text-sm">Skill Level</label>
                                   {entryIndex > 0 && (
                                     <button 
                                       onClick={() => removeEntryFromProfessional(professional.id, entry.id)}
@@ -393,7 +395,7 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
                                   <button
                                     type="button"
                                     onClick={() => setOpenDropdown(openDropdown === entry.id ? null : entry.id)}
-                                    className="w-full bg-white text-gray-500 px-4 py-2 rounded-lg outline-none text-left flex items-center justify-between"
+                                    className="w-full bg-white text-gray-500 px-3 md:px-4 py-2 rounded-lg outline-none text-left flex items-center justify-between text-sm md:text-base"
                                   >
                                     <span className={entry.level ? "text-black" : "text-gray-500"}>
                                       {entry.level || "Select Skill Level"}
@@ -416,7 +418,7 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
                                           key={level}
                                           type="button"
                                           onClick={() => updateProfessionalLevel(professional.id, entry.id, level)}
-                                          className="w-full px-4 py-3 text-left text-black hover:bg-gray-100 transition-colors"
+                                          className="w-full px-4 py-3 text-left text-black hover:bg-gray-100 transition-colors text-sm md:text-base"
                                         >
                                           {level}
                                         </button>
@@ -443,43 +445,36 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
               )}
 
               {currentStep === 2 && (
-                <div className="w-[766px] h-[439px] flex flex-col bg-[#080B10] p-4 rounded-lg">
+                <div className="w-full md:w-[766px] flex flex-col bg-[#080B10] p-3 md:p-4 rounded-lg gap-4">
                   {/* Description */}
                   <div>
-                    <label className="text-white mb-2 block" style={{ fontFamily: 'Inter', fontWeight: 400, fontSize: '14px', lineHeight: '100%', letterSpacing: '0%', paddingBottom: '2px', paddingTop:'2px' }}>Description:</label>
+                    <label className="text-white mb-2 block text-sm md:text-base">Description:</label>
                     <textarea
                       placeholder="Write your Queries, or any Details."
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
-                      className="w-full h-[185px] bg-white text-black rounded-lg outline-none resize-none border border-gray-300"
+                      className="w-full h-[140px] md:h-[185px] bg-white text-black rounded-lg outline-none resize-none border border-gray-300 text-sm md:text-base"
                       style={{
-                        padding: "14.5px 12px",
+                        padding: "12px",
                       }}
                     />
                   </div>
 
                   {/* Attach Docs */}
                   <div>
-                    <label className="text-white mb-2 block" style={{ fontFamily: 'Inter', fontWeight: 400, fontSize: '14px', lineHeight: '100%', letterSpacing: '0%' , paddingBottom: '2px' }}>Attach Docs:</label>
+                    <label className="text-white mb-2 block text-sm md:text-base">Attach Docs:</label>
                     {!uploadedFile ? (
                       <div 
-                        className="w-full h-[164px] bg-[#1E2022] rounded-lg border-[1.5px] border-dashed border-[#2B2F32] flex flex-col items-center justify-center gap-4"
-                        style={{
-                          padding: "24px 16px",
-                        }}
+                        className="w-full h-[140px] md:h-[164px] bg-[#1E2022] rounded-lg border-[1.5px] border-dashed border-[#2B2F32] flex flex-col items-center justify-center gap-3 md:gap-4 p-4"
                       >
                         <img 
                           src="/upload.svg" 
                           alt="Upload" 
-                          style={{
-                            width: "56.306640625px",
-                            height: "36px",
-                            opacity: 1,
-                          }}
+                          className="w-10 h-8 md:w-14 md:h-9"
                         />
                         <div className="text-center">
-                          <p className="text-white text-base mb-1">Upload your Doc's here</p>
-                          <p className="text-gray-400 text-sm">JPG, PNG, HEIC up to 10MB</p>
+                          <p className="text-white text-sm md:text-base mb-1">Upload your Doc's here</p>
+                          <p className="text-gray-400 text-xs md:text-sm">JPG, PNG, HEIC up to 10MB</p>
                         </div>
                         <input
                           ref={fileInputRef}
@@ -502,24 +497,21 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
                       </div>
                     ) : (
                       <div 
-                        className="w-full h-[164px] bg-[#1E2022] rounded-lg border-[1.5px] border-solid border-[#10EFFF] flex items-center justify-between px-6"
-                        style={{
-                          padding: "24px 16px",
-                        }}
+                        className="w-full h-auto min-h-[100px] md:h-[164px] bg-[#1E2022] rounded-lg border-[1.5px] border-solid border-[#10EFFF] flex items-center justify-between px-4 md:px-6 py-4"
                       >
-                        <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-[#10EFFF]/20 rounded-lg flex items-center justify-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <div className="flex items-center gap-3 md:gap-4">
+                          <div className="w-10 h-10 md:w-12 md:h-12 bg-[#10EFFF]/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="md:w-6 md:h-6">
                               <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#10EFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                               <path d="M14 2V8H20" stroke="#10EFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                           </div>
-                          <div>
-                            <p className="text-white font-medium">{uploadedFile.name}</p>
-                            <p className="text-gray-400 text-sm">{(uploadedFile.size / 1024).toFixed(2)} KB</p>
+                          <div className="min-w-0">
+                            <p className="text-white font-medium text-sm md:text-base truncate">{uploadedFile.name}</p>
+                            <p className="text-gray-400 text-xs md:text-sm">{(uploadedFile.size / 1024).toFixed(2)} KB</p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-shrink-0">
                           <button
                             onClick={() => setUploadedFile(null)}
                             className="text-red-500 hover:text-red-400 transition-colors"
@@ -536,38 +528,38 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
               )}
 
               {currentStep === 3 && (
-                <div className="w-[766px] h-[533px] flex flex-col gap-4">
-                  <h3 className="text-xl font-semibold">Hiring Summary:</h3>
+                <div className="w-full md:w-[766px] flex flex-col gap-4">
+                  <h3 className="text-lg md:text-xl font-semibold">Hiring Summary:</h3>
                   <div className="flex flex-col gap-4 overflow-y-auto">
                     {professionals.map((professional) => (
                       <div 
                         key={professional.id}
-                        className="w-[734px] bg-[#080B10] border border-[#2B2F32] rounded-lg p-4"
+                        className="w-full md:w-[734px] bg-[#080B10] border border-[#2B2F32] rounded-lg p-3 md:p-4"
                       >
                         {/* Header */}
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 rounded-lg bg-[#2B2F32] flex items-center justify-center">
-                            <img src={professional.icon} alt={professional.skillLabel} className="w-5 h-5" />
+                        <div className="flex items-center gap-2 md:gap-3 mb-4">
+                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-[#2B2F32] flex items-center justify-center flex-shrink-0">
+                            <img src={professional.icon} alt={professional.skillLabel} className="w-4 h-4 md:w-5 md:h-5" />
                           </div>
                           <div>
-                            <h4 className="text-white font-medium text-base">{professional.skillLabel}</h4>
-                            <p className="text-gray-400 text-sm">Professional Details</p>
+                            <h4 className="text-white font-medium text-sm md:text-base">{professional.skillLabel}</h4>
+                            <p className="text-gray-400 text-xs md:text-sm">Professional Details</p>
                           </div>
                         </div>
 
                         {/* Entries Grid */}
-                        <div className="space-y-4">
+                        <div className="space-y-3 md:space-y-4">
                           {professional.entries.map((entry) => (
-                            <div key={entry.id} className="grid grid-cols-2 gap-4">
+                            <div key={entry.id} className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                               <div>
-                                <label className="text-white text-sm mb-2 block">Skill Level</label>
-                                <div className="w-full bg-[#3B3F42] text-white px-4 py-3 rounded-lg">
+                                <label className="text-white text-xs md:text-sm mb-2 block">Skill Level</label>
+                                <div className="w-full bg-[#3B3F42] text-white px-3 md:px-4 py-2 md:py-3 rounded-lg text-sm md:text-base">
                                   {entry.level || "Not specified"}
                                 </div>
                               </div>
                               <div>
-                                <label className="text-white text-sm mb-2 block">No. of Professionals</label>
-                                <div className="w-full bg-[#3B3F42] text-white px-4 py-3 rounded-lg">
+                                <label className="text-white text-xs md:text-sm mb-2 block">No. of Professionals</label>
+                                <div className="w-full bg-[#3B3F42] text-white px-3 md:px-4 py-2 md:py-3 rounded-lg text-sm md:text-base">
                                   {entry.count}
                                 </div>
                               </div>
@@ -579,17 +571,17 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
 
                     {/* Uploaded File Section */}
                     {uploadedFile && (
-                      <div className="w-[734px] bg-[#080B10] border border-[#2B2F32] rounded-lg p-4">
-                        <h4 className="text-white font-medium mb-3">Attached Document</h4>
+                      <div className="w-full md:w-[734px] bg-[#080B10] border border-[#2B2F32] rounded-lg p-3 md:p-4">
+                        <h4 className="text-white font-medium mb-3 text-sm md:text-base">Attached Document</h4>
                         <div className="flex items-center gap-3 bg-[#1E2022] rounded-lg p-3 border border-[#10EFFF]">
-                          <div className="w-10 h-10 bg-[#10EFFF]/20 rounded-lg flex items-center justify-center">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <div className="w-8 h-8 md:w-10 md:h-10 bg-[#10EFFF]/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="md:w-5 md:h-5">
                               <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#10EFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                               <path d="M14 2V8H20" stroke="#10EFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
                           </div>
-                          <div>
-                            <p className="text-white font-medium text-sm">{uploadedFile.name}</p>
+                          <div className="min-w-0">
+                            <p className="text-white font-medium text-xs md:text-sm truncate">{uploadedFile.name}</p>
                             <p className="text-gray-400 text-xs">{(uploadedFile.size / 1024).toFixed(2)} KB</p>
                           </div>
                         </div>
@@ -601,11 +593,11 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
             </div>
 
             {/* Footer with Buttons */}
-            <div className="absolute bottom-0 left-0 right-0 p-8 pb-5 flex justify-between">
+            <div className="flex-shrink-0 p-4 md:p-6 flex justify-between bg-[#1A1D1F] border-t border-[#2B2F32]">
               {currentStep > 0 && (
                 <button
                   onClick={handleBack}
-                  className="border border-white text-white rounded-full font-medium hover:bg-white/10 transition-colors flex items-center justify-center px-8 h-[45px]"
+                  className="border border-white text-white rounded-full font-medium hover:bg-white/10 transition-colors flex items-center justify-center px-6 md:px-8 h-[40px] md:h-[45px] text-sm md:text-base"
                 >
                   Back
                 </button>
@@ -613,20 +605,21 @@ export default function HireUsModal({ isOpen, onClose }: HireUsModalProps) {
               {currentStep < steps.length - 1 ? (
                 <button
                   onClick={handleNext}
-                  className="bg-[#10EFFF] text-black rounded-full font-medium hover:bg-[#0DD4E8] transition-colors flex items-center justify-center w-[88px] h-[45px] gap-2 ml-auto"
+                  className="bg-[#10EFFF] text-black rounded-full font-medium hover:bg-[#0DD4E8] transition-colors flex items-center justify-center w-[80px] md:w-[88px] h-[40px] md:h-[45px] gap-2 ml-auto text-sm md:text-base"
                 >
                   Next
                 </button>
               ) : (
                 <button
                   onClick={handleSubmit}
-                  className="bg-[#10EFFF] text-black rounded-full font-medium hover:bg-[#0DD4E8] transition-colors flex items-center justify-center px-8 h-[45px] ml-auto"
+                  className="bg-[#10EFFF] text-black rounded-full font-medium hover:bg-[#0DD4E8] transition-colors flex items-center justify-center px-6 md:px-8 h-[40px] md:h-[45px] ml-auto text-sm md:text-base"
                 >
                   Submit
                 </button>
               )}
             </div>
           </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>
