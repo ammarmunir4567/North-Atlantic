@@ -43,42 +43,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Right Side - Social Media Icons */}
-          <div className="flex items-center space-x-6">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              <img
-                src="/twitter-icon.svg"
-                alt=""
-              />
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              <img
-                src="/facebook-icon.svg"
-                alt=""
-              />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-gray-300 transition-colors"
-            >
-              <img
-                src="/instagram-icon.svg"
-                alt=""
-              />
-            </a>
-          </div>
         </div>
 
         {/* Divider Line */}
@@ -87,7 +51,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-center">
           <p className="text-sm text-white">
-            © Copyright 2024. All rights Reserved
+            © Copyright 2025. All rights Reserved
           </p>
         </div>
       </div>
